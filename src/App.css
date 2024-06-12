@@ -1,0 +1,51 @@
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.Cuerpo {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.Lista {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Cuadro {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  border-radius: 10px;
+  margin: 15px;
+  background-color: greenyellow;
+  align-items: center;
+}
+
+.Dato {
+  height: 25px;
+  font-size: large;
+  margin: 5px;
+}
+
+.Error {
+  color: red;
+}
+
+.Boton {
+  background-color: #007BFF;
+    color: #fff;
+    border: none;
+    height: 50px;
+    width: 200px;
+    font-size: large;
+    border-radius: 10px;
+    margin: 10px 0 0 0;
+}
+
+.Boton:hover {
+  background-color: #0056b3;
+}
