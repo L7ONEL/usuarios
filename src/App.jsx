@@ -2,6 +2,7 @@ import { Component } from 'react';
 import axios from 'axios';
 import Registrar from './componentes/Registrar';
 import InicioSesion from './componentes/InicioSesion';
+import Public from './componentes/Datos';
 import './App.css';
 
 export default class App extends Component {
@@ -13,7 +14,9 @@ export default class App extends Component {
       nombre: "",
       apellido: "",
       dni: "",
-      token: ""
+      token: "",
+      public: "",
+      private: []
     }
   }
 
@@ -46,10 +49,8 @@ export default class App extends Component {
 
     axios.post(url, data)
       .then((response) => {
+        this.setState({token: response.data.token});
         alert("Sesión iniciada correctamente.");
-        console.log(response.data);
-
-        this.setState({token: response.data.token})
       })
       .catch((error) => {
         console.log(error);
@@ -57,7 +58,29 @@ export default class App extends Component {
   }
 
   mostrarDatos(token) {
-    
+    const urlPublic = "http://10.0.4.103:3001/api/public";
+    axios.get(urlPublic)
+      .then((response) => {
+        console.log(response.data);
+        this.setState({ public: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    const urlPrivate = "http://10.0.4.103:3001/api/private/lista";
+    const config = {
+      header: {
+        authorization: token
+      }
+    }
+    axios.get(urlPrivate, config)
+      .then((response) => {
+        this.setState({ private: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -79,6 +102,10 @@ export default class App extends Component {
           className='Boton'
           onClick={() => this.mostrarDatos(this.state.token)}
         >Mostrar datos</button>
+
+        <Datos>{this.state.public}</Datos>
+
+        <Datos>{this.state.private}</Datos>
             
       </div>
     )
