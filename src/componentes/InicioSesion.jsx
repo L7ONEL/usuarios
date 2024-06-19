@@ -32,7 +32,7 @@ export default class InicioSesion extends Component {
         <button
           className='Boton'
           onClick={() => this.props.iniciarSesion(this.state.username, this.state.contraseña)}
-        >Registrarse</button>
+        >Iniciar Sesión</button>
       </div>
     )
   }

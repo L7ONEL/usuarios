@@ -2,7 +2,7 @@ import { Component } from 'react';
 import axios from 'axios';
 import Registrar from './componentes/Registrar';
 import InicioSesion from './componentes/InicioSesion';
-import Public from './componentes/Datos';
+import Datos from './componentes/Datos';
 import './App.css';
 
 export default class App extends Component {
@@ -103,10 +103,16 @@ export default class App extends Component {
           onClick={() => this.mostrarDatos(this.state.token)}
         >Mostrar datos</button>
 
-        <Datos>{this.state.public}</Datos>
+        <div className="Lista">
+          <Datos>{this.state.public}</Datos>
 
-        <Datos>{this.state.private}</Datos>
-            
+          {this.state.private.map((cont, index) => 
+            <Datos>
+              {cont}
+            </Datos>
+          )}
+        </div>
+        
       </div>
     )
   }

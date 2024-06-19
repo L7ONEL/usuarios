@@ -7,11 +7,9 @@ export default class Public extends Component {
 
     render() {
       return(
-        <div className='Lista'>
           <div className='Cuadro'>
             {this.props.children}
           </div>
-        </div>
       )
     }
 
